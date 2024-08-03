@@ -6,60 +6,60 @@ namespace GrapplingHook
 {
     public class modOptions : ThunderScript
     {
-        [ModOption("Shot Speed", tooltip = "Speed the hook is shot out", defaultValueIndex = 39, valueSourceName = nameof(speed1), category = "Shooting Settings", interactionType = ModOption.InteractionType.Slider, order = 1)]
-        public static float speed;
+        [ModOption("Shot Speed", tooltip = "Speed the hook is shot out", valueSourceName = nameof(speed1), category = "Shooting Settings", interactionType = ModOption.InteractionType.Slider, order = 1)]
+        public static float speed = 40;
         internal static ModOptionFloat[] speed1()
         {
             return ModOptionFloat.CreateArray(1, 100, 1);
         }
-        [ModOption("Hook drop physics", tooltip = "Disables the gravity on the hook in order to make it not drop", category = "Shooting Settings", defaultValueIndex = 1, order = 2)]
-        public static bool dropPhysics;
-        [ModOption("Aim Assist",tooltip = "Lock onto nearby surfaces, allowing for easy aiming" ,defaultValueIndex = 0, category = "Aim Settings", order = 3)]
-        public static bool aimAssist;
-        [ModOption("Aim Assist Sensitivity", tooltip = "The radius in which aim assist locks onto nearby surfaces", defaultValueIndex = 2, category = "Aim Settings", valueSourceName = nameof(aimSense1), interactionType = ModOption.InteractionType.Slider, order = 4)]
-        public static float aimSense;
+        [ModOption("Hook drop physics", tooltip = "Disables the gravity on the hook in order to make it not drop", category = "Shooting Settings", order = 2)]
+        public static bool dropPhysics = true;
+        [ModOption("Aim Assist",tooltip = "Lock onto nearby surfaces, allowing for easy aiming", category = "Aim Settings", order = 3)]
+        public static bool aimAssist = false;
+        [ModOption("Aim Assist Sensitivity", tooltip = "The radius in which aim assist locks onto nearby surfaces", category = "Aim Settings", valueSourceName = nameof(aimSense1), interactionType = ModOption.InteractionType.Slider, order = 4)]
+        public static float aimSense = 0.50f;
         internal static ModOptionFloat[] aimSense1()
         {
             return ModOptionFloat.CreateArray(0.25f, 5, 0.25f);
         }
-        [ModOption("Show Highlighter", tooltip = "Enables/Disables the aiming Highlight Sphere", defaultValueIndex = 1, category = "Aim Settings", order = 5)]
-        public static bool showHighlight;
-        [ModOption("Distance Highlight Scaling", "The further away you are from the highlight the bigger it gets", defaultValueIndex = 0, category = "Aim Settings", order = 5)]
-        public static bool distanceScaling;
-        [ModOption("Highlight Size", "Base highlight size", defaultValueIndex = 0, category = "Aim Settings", valueSourceName = nameof(highlightSize1), interactionType = ModOption.InteractionType.Slider, order = 6)]
-        public static float highlightSize;
+        [ModOption("Show Highlighter", tooltip = "Enables/Disables the aiming Highlight Sphere", category = "Aim Settings", order = 5)]
+        public static bool showHighlight = true;
+        [ModOption("Distance Highlight Scaling", "The further away you are from the highlight the bigger it gets", category = "Aim Settings", order = 5)]
+        public static bool distanceScaling = false;
+        [ModOption("Highlight Size", "Base highlight size", category = "Aim Settings", valueSourceName = nameof(highlightSize1), interactionType = ModOption.InteractionType.Slider, order = 6)]
+        public static float highlightSize = 0.05f;
         internal static ModOptionFloat[] highlightSize1()
         {
             return ModOptionFloat.CreateArray(0.05f, 1, 0.15f);
         }
-        [ModOption("Retract Speed", tooltip = "Speed in which in the winch pulls you up", defaultValueIndex = 0, interactionType = ModOption.InteractionType.Slider, valueSourceName = nameof(retractSpeed1), category = "Swing Settings", order = 7)]
-        public static float retractSpeed;
+        [ModOption("Retract Speed", tooltip = "Speed in which in the winch pulls you up", interactionType = ModOption.InteractionType.Slider, valueSourceName = nameof(retractSpeed1), category = "Swing Settings", order = 7)]
+        public static float retractSpeed = 1;
         internal static ModOptionFloat[] retractSpeed1()
         {
             return ModOptionFloat.CreateArray(1, 15, 1);
         }
-        [ModOption("Spring", defaultValueIndex = 499, interactionType = ModOption.InteractionType.Slider, valueSourceName = nameof(Spring1), category = "Swing Settings", order = 8)]
-        public static float Spring;
+        [ModOption("Spring", interactionType = ModOption.InteractionType.Slider, valueSourceName = nameof(Spring1), category = "Swing Settings", order = 8)]
+        public static float Spring = 500;
         internal static ModOptionFloat[] Spring1()
         {
             return ModOptionFloat.CreateArray(1, 1000, 1);
         }
-        [ModOption("Damper", defaultValueIndex = 129, interactionType = ModOption.InteractionType.Slider, valueSourceName = nameof(Damper1), category = "Swing Settings", order = 9)]
-        public static float Damper;
+        [ModOption("Damper", interactionType = ModOption.InteractionType.Slider, valueSourceName = nameof(Damper1), category = "Swing Settings", order = 9)]
+        public static float Damper = 130;
         internal static ModOptionFloat[] Damper1()
         {
             return ModOptionFloat.CreateArray(1, 1000, 1);
         }
-        [ModOption("Mass Scale", defaultValueIndex = 34, interactionType = ModOption.InteractionType.Slider, valueSourceName = nameof(Mass1), category = "Swing Settings", order = 10)]
-        public static float MassScale;
+        [ModOption("Mass Scale", interactionType = ModOption.InteractionType.Slider, valueSourceName = nameof(Mass1), category = "Swing Settings", order = 10)]
+        public static float MassScale = 35;
         internal static ModOptionFloat[] Mass1()
         {
             return ModOptionFloat.CreateArray(1, 1000, 1);
         }
-        [ModOption("Shoot Audio", tooltip = "Disables/Enables the shoot audio", category = "Audio", defaultValueIndex = 1, order = 11)]
-        public static bool shootAudio;
-        [ModOption("Retract Audio", tooltip = "Disables/Enables the winch audio", category = "Audio", defaultValueIndex = 1, order = 12)]
-        public static bool retractAudio;
+        [ModOption("Shoot Audio", tooltip = "Disables/Enables the shoot audio", category = "Audio", order = 11)]
+        public static bool shootAudio = true;
+        [ModOption("Retract Audio", tooltip = "Disables/Enables the winch audio", category = "Audio", order = 12)]
+        public static bool retractAudio = true;
     }
     public class ItemModuleGrapplingHook : ItemModule
     {
@@ -79,6 +79,7 @@ namespace GrapplingHook
         public Item hook1;
         public bool canPull = false;
         public SpringJoint joint;
+        public SpringJoint creatureJoint;
         public AudioSource audioSource;
         public AudioSource source;
         public LineRenderer lineRenderer2;
@@ -114,7 +115,18 @@ namespace GrapplingHook
             {
                 sphere.SetActive(false);
             }
-            if(!shot && !modOptions.aimAssist && item.handlers.Count > 0 && Physics.Raycast(item.transform.position, item.transform.forward, out RaycastHit hit2, Mathf.Infinity, ~LayerMask.GetMask("TouchObject", "MovingItem", "DroppedItem", "Zone", "LightProbeVolume")))
+
+            if(modOptions.aimAssist && !Physics.SphereCast(item.transform.position, modOptions.aimSense, item.transform.forward, out RaycastHit hit1, Mathf.Infinity, ~LayerMask.GetMask("TouchObject", "MovingItem", "DroppedItem", "Zone", "LightProbeVolume")))
+            {
+                sphere.SetActive(false);
+            }
+
+            if (!modOptions.aimAssist && !Physics.Raycast(item.transform.position, item.transform.forward, out RaycastHit hit3, Mathf.Infinity, ~LayerMask.GetMask("TouchObject", "MovingItem", "DroppedItem", "Zone", "LightProbeVolume")))
+            {
+                sphere.SetActive(false);
+            }
+
+            if (!shot && !modOptions.aimAssist && item.handlers.Count > 0 && Physics.Raycast(item.transform.position, item.transform.forward, out RaycastHit hit2, Mathf.Infinity, ~LayerMask.GetMask("TouchObject", "MovingItem", "DroppedItem", "Zone", "LightProbeVolume")))
             {
                 sphere.SetActive(true);
                 sphere.transform.position = hit2.point;
@@ -157,7 +169,7 @@ namespace GrapplingHook
                 Catalog.GetData<ItemData>("HookItem").SpawnAsync(hook =>
                 {
                     shot = true;
-                    hook.disallowDespawn = true;
+                    hook.DisallowDespawn = true;
                     LineRenderer linerender = hook.gameObject.AddComponent<LineRenderer>();
                     linerender.startWidth = 0.01f;
                     linerender.endWidth = 0.01f;
@@ -192,11 +204,16 @@ namespace GrapplingHook
 
             if (action == Interactable.Action.AlternateUseStart && !canShoot)
             {
-                hook1.disallowDespawn = false;
+                hook1.DisallowDespawn = false;
                 GameManager.local.StopCoroutine(Line(hook1, linerender, attachPoint, item));
                 GameManager.local.StopCoroutine(Line(hook1, linerender, attachPoint, item));
                 UnityEngine.GameObject.Destroy(hook1.GetComponent<LineRenderer>());
                 UnityEngine.GameObject.Destroy(item.GetComponent<SpringJoint>());
+                if(creatureJoint != null)
+                {
+                    creatureJoint.gameObject.transform.root.GetComponentInParent<Creature>().brain.instance.Start();
+                    UnityEngine.GameObject.Destroy(creatureJoint);
+                }
                 hook1.Despawn();
                 animator.Play("Idle");
                 canShoot = true;
@@ -236,13 +253,17 @@ namespace GrapplingHook
                     GameManager.local.StopCoroutine(pull(hook1, item));
                     source.Stop();
                 }
-                if (Player.local.locomotion.isGrounded)
+                if (Player.local.locomotion.isGrounded && creatureJoint == null)
                 {
                     Player.local.locomotion.Jump(true);
                 }
                 if (joint != null && item != null && Hook != null)
                 {
                     joint.maxDistance = Vector3.Distance(item.transform.position, Hook.transform.position) - modOptions.retractSpeed;
+                    if(creatureJoint != null)
+                    {
+                        creatureJoint.maxDistance = Vector3.Distance(item.transform.position, Hook.transform.position) - modOptions.retractSpeed;
+                    }
                 }
                 else
                 {
@@ -269,19 +290,36 @@ namespace GrapplingHook
                 }
                 if (hook.physicBody.isKinematic)
                 {
-                    joint.autoConfigureConnectedAnchor = false;
-                    joint.connectedAnchor = hook.transform.position;
-                    if (!setmax)
+                    if(creatureJoint != null)
                     {
-                        joint.maxDistance = Vector3.Distance(Grapple.transform.position, hook.transform.position) + 0.2f;
-                        setmax = true;
-                    }
-                    joint.minDistance = 0.1f;
+                        creatureJoint.autoConfigureConnectedAnchor = false;
+                        creatureJoint.connectedAnchor = Grapple.transform.position;
+                        creatureJoint.minDistance = 0.1f;
 
-                    //Configurations
-                    joint.spring = modOptions.Spring;
-                    joint.damper = modOptions.Damper;
-                    joint.massScale = modOptions.MassScale;
+                        //Configurations
+                        creatureJoint.spring = modOptions.Spring;
+                        creatureJoint.damper = modOptions.Damper;
+                        creatureJoint.massScale = modOptions.MassScale;
+                        if (!setmax)
+                        {
+                            creatureJoint.maxDistance = Vector3.Distance(Grapple.transform.position, hook.transform.position) + 0.2f;
+                            setmax = true;
+                        }
+                    } else
+                    {
+                        joint.autoConfigureConnectedAnchor = false;
+                        joint.connectedAnchor = hook.transform.position;
+                        joint.minDistance = 0.1f;
+                        if (!setmax)
+                        {
+                            joint.maxDistance = Vector3.Distance(Grapple.transform.position, hook.transform.position) + 0.2f;
+                            setmax = true;
+                        }
+                        //Configurations
+                        joint.spring = modOptions.Spring;
+                        joint.damper = modOptions.Damper;
+                        joint.massScale = modOptions.MassScale;
+                    }
                 }
                 yield return null;
             }
@@ -303,7 +341,7 @@ namespace GrapplingHook
         {
             if(!isFrozen)
             {
-                /*if (collision.gameObject.GetComponentInParent<Golem>())
+                if (collision.gameObject.GetComponentInParent<Golem>())
                 {
                     foreach (ColliderGroup group in Item.colliderGroups)
                     {
@@ -317,8 +355,25 @@ namespace GrapplingHook
                     Item.physicBody.isEnabled = false;
                     Item.physicBody.mass = 0;
                     Item.physicBody.centerOfMass = collision.transform.position;
-                }*/
-                /*else*/
+                }
+                else if (collision.gameObject.transform.root.GetComponentInParent<Creature>())
+                {
+                    collision.gameObject.transform.root.GetComponentInParent<Creature>().ragdoll.physicTogglePlayerRadius = 1000000;
+                    collision.gameObject.transform.root.GetComponentInParent<Creature>().ragdoll.physicToggleRagdollRadius = 1000000;
+                    collision.gameObject.transform.root.GetComponentInParent<Creature>().ragdoll.SetState(Ragdoll.State.Destabilized);
+                    collision.gameObject.transform.root.GetComponentInParent<Creature>().brain.instance.Stop();
+                    grappleItem.GetComponent<Mono1>().creatureJoint = collision.gameObject.GetComponentInParent<RagdollPart>().gameObject.AddComponent<SpringJoint>();
+                    foreach (ColliderGroup group in Item.colliderGroups)
+                    {
+                        foreach (Collider collider in group.colliders)
+                        {
+                            collider.enabled = false;
+                        }
+                    }
+                    Item.physicBody.isKinematic = true;
+                    Item.transform.SetParent(collision.transform);
+                }
+                else
                 {
                     Item.physicBody.isKinematic = true;
                 }
