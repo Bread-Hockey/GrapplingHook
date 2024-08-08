@@ -14,7 +14,7 @@ namespace GrapplingHook
         }
         [ModOption("Hook drop physics", tooltip = "Disables the gravity on the hook in order to make it not drop", category = "Shooting Settings", order = 2)]
         public static bool dropPhysics = true;
-        [ModOption("Aim Assist",tooltip = "Lock onto nearby surfaces, allowing for easy aiming", category = "Aim Settings", order = 3)]
+        [ModOption("Aim Assist", tooltip = "Lock onto nearby surfaces, allowing for easy aiming", category = "Aim Settings", order = 3)]
         public static bool aimAssist = false;
         [ModOption("Aim Assist Sensitivity", tooltip = "The radius in which aim assist locks onto nearby surfaces", category = "Aim Settings", valueSourceName = nameof(aimSense1), interactionType = ModOption.InteractionType.Slider, order = 4)]
         public static float aimSense = 0.50f;
@@ -79,13 +79,14 @@ namespace GrapplingHook
         public Item hook1;
         public bool canPull = false;
         public SpringJoint joint;
-        public SpringJoint creatureJoint;
+        public SpringJoint secondaryJoint;
         public AudioSource audioSource;
         public AudioSource source;
         public LineRenderer lineRenderer2;
         public GameObject sphere;
         public Renderer render1;
         public bool isCreature;
+        public bool isItem;
         bool shot = false;
         public Collision collision;
         public bool allowCreaturePull = false;
@@ -111,12 +112,12 @@ namespace GrapplingHook
 
         IEnumerator detectYank()
         {
-            Creature creature = creatureJoint.gameObject.transform.root.GetComponentInParent<Creature>();
+            Creature creature = secondaryJoint.gameObject.transform.root.GetComponentInParent<Creature>();
             while (true)
             {
-                if (creatureJoint != null)
+                if (secondaryJoint != null && isCreature)
                 {
-                    if(item.physicBody.velocity.magnitude > 4 || creature.ragdoll.state == Ragdoll.State.Destabilized)
+                    if (item.physicBody.velocity.magnitude > 4 || creature.ragdoll.state == Ragdoll.State.Destabilized || creature.isKilled || creature.ragdoll.state == Ragdoll.State.Inert)
                     {
                         allowCreaturePull = true;
                         creature.ragdoll.physicTogglePlayerRadius = 1000000;
@@ -126,6 +127,9 @@ namespace GrapplingHook
                         yield break;
                     }
                     yield return null;
+                } else if(secondaryJoint != null && isItem)
+                {
+                    allowCreaturePull = true;
                 }
                 yield return null;
             }
@@ -135,11 +139,22 @@ namespace GrapplingHook
         {
             if (isCreature)
             {
-                creatureJoint.gameObject.transform.root.GetComponentInParent<Creature>().ragdoll.physicTogglePlayerRadius = 1000000;
-                creatureJoint.gameObject.transform.root.GetComponentInParent<Creature>().ragdoll.physicToggleRagdollRadius = 1000000;
-                creatureJoint.gameObject.transform.root.GetComponentInParent<Creature>().ragdoll.SetState(Ragdoll.State.Destabilized);
-                creatureJoint.maxDistance = Vector3.Distance(item.transform.position, hook1.transform.position) + 0.2f;
-                creatureJoint.gameObject.transform.root.GetComponentInParent<Creature>().brain.instance.Stop();
+                secondaryJoint.gameObject.transform.root.GetComponentInParent<Creature>().ragdoll.physicTogglePlayerRadius = 1000000;
+                secondaryJoint.gameObject.transform.root.GetComponentInParent<Creature>().ragdoll.physicToggleRagdollRadius = 1000000;
+                secondaryJoint.gameObject.transform.root.GetComponentInParent<Creature>().ragdoll.SetState(Ragdoll.State.Destabilized);
+                secondaryJoint.maxDistance = Vector3.Distance(item.transform.position, hook1.transform.position) + 0.2f;
+                secondaryJoint.gameObject.transform.root.GetComponentInParent<Creature>().brain.instance.Stop();
+                joint.spring = 0;
+                joint.damper = 0;
+                joint.massScale = 0;
+                joint.autoConfigureConnectedAnchor = false;
+                joint.connectedAnchor = hook1.transform.position;
+                joint.minDistance = 0.1f;
+                joint.spring = 0;
+            }
+            if (isItem)
+            {
+                secondaryJoint.maxDistance = Vector3.Distance(item.transform.position, hook1.transform.position) + 0.2f;
                 joint.spring = 0;
                 joint.damper = 0;
                 joint.massScale = 0;
@@ -152,7 +167,7 @@ namespace GrapplingHook
 
         void Update()
         {
-            if(creatureJoint != null && !allowCreaturePull && !canShoot && !detectingYank)
+            if (secondaryJoint != null && !allowCreaturePull && !canShoot && !detectingYank)
             {
                 detectingYank = true;
                 GameManager.local.StartCoroutine(detectYank());
@@ -161,13 +176,13 @@ namespace GrapplingHook
             {
                 sphere.SetActive(true);
                 sphere.transform.position = hit.point;
-            } 
-            else if(!modOptions.showHighlight || shot || item.handlers.Count == 0)
+            }
+            else if (!modOptions.showHighlight || shot || item.handlers.Count == 0)
             {
                 sphere.SetActive(false);
             }
 
-            if(modOptions.aimAssist && !Physics.SphereCast(item.transform.position, modOptions.aimSense, item.transform.forward, out RaycastHit hit1, Mathf.Infinity, ~LayerMask.GetMask("TouchObject", "MovingItem", "DroppedItem", "Zone", "LightProbeVolume", "BodyLocomotion")))
+            if (modOptions.aimAssist && !Physics.SphereCast(item.transform.position, modOptions.aimSense, item.transform.forward, out RaycastHit hit1, Mathf.Infinity, ~LayerMask.GetMask("TouchObject", "MovingItem", "DroppedItem", "Zone", "LightProbeVolume", "BodyLocomotion")))
             {
                 sphere.SetActive(false);
             }
@@ -181,10 +196,10 @@ namespace GrapplingHook
             {
                 sphere.SetActive(true);
                 sphere.transform.position = hit2.point;
-            } 
-            else if(!modOptions.showHighlight || shot || item.handlers.Count == 0)
+            }
+            else if (!modOptions.showHighlight || shot || item.handlers.Count == 0)
             {
-                sphere.SetActive(false); 
+                sphere.SetActive(false);
             }
             if (modOptions.showHighlight == false)
             {
@@ -207,13 +222,13 @@ namespace GrapplingHook
 
         private void MainHandleRight_OnHeldActionEvent(RagdollHand ragdollHand, Interactable.Action action)
         {
-            if(action == Interactable.Action.Ungrab)
+            if (action == Interactable.Action.Ungrab)
             {
-                if (creatureJoint != null)
+                if (secondaryJoint != null)
                 {
-                    creatureJoint.gameObject.transform.root.GetComponentInParent<Creature>().brain.instance.Start();
-                    creatureJoint.spring = 0;
-                    creatureJoint.maxDistance = Mathf.Infinity;
+                    secondaryJoint.gameObject.transform.root.GetComponentInParent<Creature>().brain.instance.Start();
+                    secondaryJoint.spring = 0;
+                    secondaryJoint.maxDistance = Mathf.Infinity;
                     joint.spring = modOptions.Spring;
                     joint.damper = modOptions.Damper;
                     joint.massScale = modOptions.MassScale;
@@ -225,7 +240,7 @@ namespace GrapplingHook
             }
             if (action == Interactable.Action.UseStart && canShoot)
             {
-                if (animator != null) 
+                if (animator != null)
                 {
                     animator.Play("Shoot");
                 }
@@ -272,29 +287,31 @@ namespace GrapplingHook
             if (action == Interactable.Action.AlternateUseStart && !canShoot)
             {
                 hook1.DisallowDespawn = false;
-                GameManager.local.StopCoroutine(Line(hook1, linerender, attachPoint, item));
-                GameManager.local.StopCoroutine(Line(hook1, linerender, attachPoint, item));
-                UnityEngine.GameObject.Destroy(hook1.GetComponent<LineRenderer>());
-                UnityEngine.GameObject.Destroy(item.GetComponent<SpringJoint>());
-                if(creatureJoint != null)
-                {
-                    creatureJoint.gameObject.transform.root.GetComponentInParent<Creature>().brain.instance.Start();
-                    UnityEngine.GameObject.Destroy(creatureJoint);
-                }
-                hook1.Despawn();
-                animator.Play("Idle");
                 canShoot = true;
                 canPull = false;
                 source.Stop();
                 shot = false;
-                isCreature = false;
                 allowCreaturePull = false;
                 detectingYank = false;
+                test = false;
+                GameManager.local.StopCoroutine(Line(hook1, linerender, attachPoint, item));
+                GameManager.local.StopCoroutine(Line(hook1, linerender, attachPoint, item));
+                UnityEngine.GameObject.Destroy(hook1.GetComponent<LineRenderer>());
+                UnityEngine.GameObject.Destroy(item.GetComponent<SpringJoint>());
+                if (secondaryJoint != null && isCreature)
+                {
+                    secondaryJoint.gameObject.transform.root.GetComponentInParent<Creature>().brain.instance.Start();
+                }
+                UnityEngine.GameObject.Destroy(secondaryJoint);
+                isCreature = false;
+                isItem = false;
+                hook1.Despawn();
+                animator.Play("Idle");
             }
 
             if (action == Interactable.Action.UseStart && canPull)
             {
-                if(creatureJoint == null)
+                if (secondaryJoint == null)
                 {
                     test = true;
                     if (source != null && modOptions.retractAudio)
@@ -302,7 +319,8 @@ namespace GrapplingHook
                         source.Play();
                     }
                     GameManager.local.StartCoroutine(pull(hook1, item));
-                } else if(creatureJoint != null && allowCreaturePull)
+                }
+                else if (secondaryJoint != null && allowCreaturePull)
                 {
                     test = true;
                     if (source != null && modOptions.retractAudio)
@@ -334,16 +352,16 @@ namespace GrapplingHook
                     GameManager.local.StopCoroutine(pull(hook1, item));
                     source.Stop();
                 }
-                if (Player.local.locomotion.isGrounded && creatureJoint == null)
+                if (Player.local.locomotion.isGrounded && secondaryJoint == null)
                 {
                     Player.local.locomotion.Jump(true);
                 }
                 if (joint != null && item != null && Hook != null)
                 {
                     joint.maxDistance = Vector3.Distance(item.transform.position, Hook.transform.position) - modOptions.retractSpeed;
-                    if(creatureJoint != null)
+                    if (secondaryJoint != null)
                     {
-                        creatureJoint.maxDistance = Vector3.Distance(item.transform.position, Hook.transform.position) - modOptions.retractSpeed;
+                        secondaryJoint.maxDistance = Vector3.Distance(item.transform.position, Hook.transform.position) - modOptions.retractSpeed;
                     }
                 }
                 else
@@ -372,22 +390,39 @@ namespace GrapplingHook
                 }
                 if (hook.physicBody.isKinematic)
                 {
-                    if(creatureJoint != null)
+                    if (secondaryJoint != null && isCreature)
                     {
-                        creatureJoint.autoConfigureConnectedAnchor = false;
-                        creatureJoint.connectedAnchor = Grapple.transform.position;
-                        creatureJoint.minDistance = 0.1f;
+                        secondaryJoint.autoConfigureConnectedAnchor = false;
+                        secondaryJoint.connectedAnchor = Grapple.transform.position;
+                        secondaryJoint.minDistance = 0.1f;
                         //Configurations
-                        creatureJoint.spring = modOptions.Spring;
-                        creatureJoint.damper = modOptions.Damper;
-                        creatureJoint.massScale = modOptions.MassScale;
+                        secondaryJoint.spring = modOptions.Spring;
+                        secondaryJoint.damper = modOptions.Damper;
+                        secondaryJoint.massScale = modOptions.MassScale;
                         if (!setmax)
                         {
-                            creatureJoint.maxDistance = Vector3.Distance(Grapple.transform.position, hook.transform.position) + 0.2f;
+                            secondaryJoint.maxDistance = Vector3.Distance(Grapple.transform.position, hook.transform.position) + 0.2f;
                             joint.maxDistance = Vector3.Distance(Grapple.transform.position, hook.transform.position) + 0.2f;
                             setmax = true;
                         }
-                    } else
+                    }
+                    else if (secondaryJoint != null && isItem)
+                    {
+                        secondaryJoint.autoConfigureConnectedAnchor = false;
+                        secondaryJoint.connectedAnchor = Grapple.transform.position;
+                        secondaryJoint.minDistance = 0.1f;
+                        //Configurations
+                        secondaryJoint.spring = modOptions.Spring;
+                        secondaryJoint.damper = modOptions.Damper;
+                        secondaryJoint.massScale = modOptions.MassScale/2;
+                        if (!setmax)
+                        {
+                            secondaryJoint.maxDistance = Vector3.Distance(Grapple.transform.position, hook.transform.position) + 0.2f;
+                            joint.maxDistance = Vector3.Distance(Grapple.transform.position, hook.transform.position) + 0.2f;
+                            setmax = true;
+                        }
+                    }
+                    else
                     {
                         joint.autoConfigureConnectedAnchor = false;
                         joint.connectedAnchor = hook.transform.position;
@@ -421,7 +456,7 @@ namespace GrapplingHook
 
         private void OnCollisionEnter(Collision collision)
         {
-            if(!isFrozen)
+            if (!isFrozen)
             {
                 if (collision.gameObject.GetComponentInParent<Golem>())
                 {
@@ -441,11 +476,27 @@ namespace GrapplingHook
                 else if (collision.gameObject.transform.root.GetComponentInParent<Creature>())
                 {
                     grappleItem.GetComponent<Mono1>().collision = collision;
-/*                    collision.gameObject.transform.root.GetComponentInParent<Creature>().ragdoll.physicTogglePlayerRadius = 1000000;
+                    collision.gameObject.transform.root.GetComponentInParent<Creature>().ragdoll.physicTogglePlayerRadius = 1000000;
                     collision.gameObject.transform.root.GetComponentInParent<Creature>().ragdoll.physicToggleRagdollRadius = 1000000;
-                    collision.gameObject.transform.root.GetComponentInParent<Creature>().ragdoll.SetState(Ragdoll.State.Destabilized);
-                    collision.gameObject.transform.root.GetComponentInParent<Creature>().brain.instance.Stop();*/
-                    grappleItem.GetComponent<Mono1>().creatureJoint = collision.gameObject.GetComponentInParent<RagdollPart>().gameObject.AddComponent<SpringJoint>();
+                    var secondaryJoint = grappleItem.GetComponent<Mono1>().secondaryJoint = collision.gameObject.GetComponentInParent<RagdollPart>().gameObject.AddComponent<SpringJoint>();
+                    secondaryJoint.anchor = secondaryJoint.transform.InverseTransformPoint(Item.transform.position);
+                    grappleItem.GetComponent<Mono1>().isCreature = true;
+                    foreach (ColliderGroup group in Item.colliderGroups)
+                    {
+                        foreach (Collider collider in group.colliders)
+                        {
+                            collider.enabled = false;
+                        }
+                    }
+                    Item.physicBody.isKinematic = true;
+                    Item.transform.SetParent(collision.transform);
+                }
+                else if (collision.gameObject.transform.root.GetComponentInParent<Item>())
+                {
+                    grappleItem.GetComponent<Mono1>().collision = collision;
+                    var secondaryJoint = grappleItem.GetComponent<Mono1>().secondaryJoint = collision.gameObject.GetComponentInParent<Item>().gameObject.AddComponent<SpringJoint>();
+                    secondaryJoint.anchor = secondaryJoint.transform.InverseTransformPoint(Item.transform.position);
+                    grappleItem.GetComponent<Mono1>().isItem = true;
                     foreach (ColliderGroup group in Item.colliderGroups)
                     {
                         foreach (Collider collider in group.colliders)
