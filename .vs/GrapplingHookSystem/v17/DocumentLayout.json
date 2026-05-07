@@ -3,11 +3,23 @@
   "WorkspaceRootPath": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\grapplinghooksystem\\grapplemodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|solutionrelative:grapplinghooksystem\\grapplemodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|c:\\users\\maxcc\\desktop\\moddingprojects\\grapplinghooksystem\\grapplinghooksystem\\aimsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|solutionrelative:grapplinghooksystem\\aimsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\grapplinghooksystem\\jointitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|c:\\users\\maxcc\\desktop\\moddingprojects\\grapplinghooksystem\\grapplinghooksystem\\grapplejoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|solutionrelative:grapplinghooksystem\\grapplejoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|c:\\users\\maxcc\\desktop\\moddingprojects\\grapplinghooksystem\\grapplinghooksystem\\jointcreature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|solutionrelative:grapplinghooksystem\\jointcreature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|c:\\users\\maxcc\\desktop\\moddingprojects\\grapplinghooksystem\\grapplinghooksystem\\jointitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|solutionrelative:grapplinghooksystem\\jointitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -17,18 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\grapplinghooksystem\\jointswing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|solutionrelative:grapplinghooksystem\\jointswing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\grapplinghooksystem\\jointcreature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|solutionrelative:grapplinghooksystem\\jointcreature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\grapplinghooksystem\\grapplejoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|solutionrelative:grapplinghooksystem\\grapplejoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\grapplinghooksystem\\grapplemodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|solutionrelative:grapplinghooksystem\\grapplemodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B56DD697-AF3B-4B0C-A6F8-48A11B6B2E17}|GrapplingHookSystem\\GrapplingHookSystem.csproj|C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\grapplinghooksystem\\modoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,11 +42,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "GrappleJoint.cs",
+              "DocumentMoniker": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\GrappleJoint.cs",
+              "RelativeDocumentMoniker": "GrapplingHookSystem\\GrappleJoint.cs",
+              "ToolTip": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\GrappleJoint.cs",
+              "RelativeToolTip": "GrapplingHookSystem\\GrappleJoint.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T00:53:30.553Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "JointCreature.cs",
+              "DocumentMoniker": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\JointCreature.cs",
+              "RelativeDocumentMoniker": "GrapplingHookSystem\\JointCreature.cs",
+              "ToolTip": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\JointCreature.cs",
+              "RelativeToolTip": "GrapplingHookSystem\\JointCreature.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T00:53:28.328Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "JointItem.cs",
+              "DocumentMoniker": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\JointItem.cs",
+              "RelativeDocumentMoniker": "GrapplingHookSystem\\JointItem.cs",
+              "ToolTip": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\JointItem.cs",
+              "RelativeToolTip": "GrapplingHookSystem\\JointItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T00:53:27.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "JointPlayer.cs",
               "DocumentMoniker": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\JointPlayer.cs",
               "RelativeDocumentMoniker": "GrapplingHookSystem\\JointPlayer.cs",
@@ -54,7 +93,8 @@
               "RelativeToolTip": "GrapplingHookSystem\\JointPlayer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-17T05:15:01.507Z"
+              "WhenOpened": "2026-01-17T05:15:01.507Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -64,82 +104,49 @@
               "RelativeDocumentMoniker": "GrapplingHookSystem\\modOptions.cs",
               "ToolTip": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\modOptions.cs",
               "RelativeToolTip": "GrapplingHookSystem\\modOptions.cs",
-              "ViewState": "AgIAAGIAAAAAAAAAAAAswIAAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAACkAAAAAAAAAAAAswIAAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-15T23:08:21.721Z"
+              "WhenOpened": "2026-01-15T23:08:21.721Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "JointSwing.cs",
               "DocumentMoniker": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\JointSwing.cs",
               "RelativeDocumentMoniker": "GrapplingHookSystem\\JointSwing.cs",
               "ToolTip": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\JointSwing.cs",
               "RelativeToolTip": "GrapplingHookSystem\\JointSwing.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAAwAUAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAUAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-15T23:07:43.369Z"
+              "WhenOpened": "2026-01-15T23:07:43.369Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "GrappleModule.cs",
               "DocumentMoniker": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\GrappleModule.cs",
               "RelativeDocumentMoniker": "GrapplingHookSystem\\GrappleModule.cs",
               "ToolTip": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\GrappleModule.cs",
               "RelativeToolTip": "GrapplingHookSystem\\GrappleModule.cs",
-              "ViewState": "AgIAAOAAAAAAAAAAAAAuwEEAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAEBAAAAAAAAAAAAwCcAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T03:54:31.223Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AimSystem.cs",
-              "DocumentMoniker": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\AimSystem.cs",
-              "RelativeDocumentMoniker": "GrapplingHookSystem\\AimSystem.cs",
-              "ToolTip": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\AimSystem.cs",
-              "RelativeToolTip": "GrapplingHookSystem\\AimSystem.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAwwEAAAAA+AQAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T21:53:37.039Z",
+              "WhenOpened": "2025-12-25T03:54:31.223Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "JointItem.cs",
-              "DocumentMoniker": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\JointItem.cs",
-              "RelativeDocumentMoniker": "GrapplingHookSystem\\JointItem.cs",
-              "ToolTip": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\JointItem.cs",
-              "RelativeToolTip": "GrapplingHookSystem\\JointItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAAAAAAAAAAAA==",
+              "Title": "AimSystem.cs",
+              "DocumentMoniker": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\AimSystem.cs",
+              "RelativeDocumentMoniker": "GrapplingHookSystem\\AimSystem.cs",
+              "ToolTip": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\AimSystem.cs",
+              "RelativeToolTip": "GrapplingHookSystem\\AimSystem.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwCYAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T18:12:13.319Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GrappleJoint.cs",
-              "DocumentMoniker": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\GrappleJoint.cs",
-              "RelativeDocumentMoniker": "GrapplingHookSystem\\GrappleJoint.cs",
-              "ToolTip": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\GrappleJoint.cs",
-              "RelativeToolTip": "GrapplingHookSystem\\GrappleJoint.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T04:53:12.395Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "JointCreature.cs",
-              "DocumentMoniker": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\JointCreature.cs",
-              "RelativeDocumentMoniker": "GrapplingHookSystem\\JointCreature.cs",
-              "ToolTip": "C:\\Users\\maxcc\\Desktop\\ModdingProjects\\GrapplingHookSystem\\GrapplingHookSystem\\JointCreature.cs",
-              "RelativeToolTip": "GrapplingHookSystem\\JointCreature.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwEoAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T03:01:55.532Z"
+              "WhenOpened": "2026-05-07T00:52:43.322Z",
+              "EditorCaption": ""
             }
           ]
         }
